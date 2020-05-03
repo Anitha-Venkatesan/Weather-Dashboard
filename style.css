@@ -17,6 +17,7 @@
 {
     display: block;
     display:table; 
-    border:1px
-    
+    border:1px;
+    font-weight:200;
+    font-size:16px;
 }
