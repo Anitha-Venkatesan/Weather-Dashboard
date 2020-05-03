@@ -1,0 +1,22 @@
+.heading
+{
+    text-align:right;
+}
+.card 
+{
+    float: left;
+}
+.container
+{
+    width: 800px;
+    height: 200px;
+    float: center;
+    
+}
+.container span
+{
+    display: block;
+    display:table; 
+    border:1px
+    
+}
