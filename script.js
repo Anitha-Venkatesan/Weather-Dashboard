@@ -1,6 +1,6 @@
 $(".icon").on("click",function(){
  var searchTerm = $("#search-city").val();
- //var local=localStorage.setItem("city",searchTerm);
+ 
  //console.log(local);
 var apiKey= "89ac10db36e375ec24dd06e7440fc3a4";
  if(searchTerm !=="")
@@ -8,6 +8,7 @@ var apiKey= "89ac10db36e375ec24dd06e7440fc3a4";
  $(".list-group").append ($('<li class="list-group-item">' +searchTerm + '</li>'));
  }
  var queryURL ="http://api.openweathermap.org/data/2.5/weather?q="+searchTerm+"&appid="+apiKey;
+ console.log(queryURL);
  var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?appid="+apiKey+"&q="+searchTerm;
  //var uvIndexURL="http://api.openweathermap.org/data/2.5/uvi?lat="+latitude+"&lon="+longitude;
  //console.log(forecastURL);
@@ -18,6 +19,8 @@ var apiKey= "89ac10db36e375ec24dd06e7440fc3a4";
         var temperature = response.main.temp;
         temperature = (temperature - 273.15) * 1.80 + 32;
         temperature=Number.parseFloat(temperature).toFixed(1);
+        var weatherIcon = response.weather[0].id;
+        console.log(weatherIcon);
         var longitude = response.coord.lat;
         var latitude = response.coord.lon;
         var uvIndexURL="http://api.openweathermap.org/data/2.5/uvi?appid="+apiKey+"&lat="+(latitude)+"&lon="+(longitude);
@@ -64,14 +67,12 @@ $.ajax({
 
         for(var j=0;j<futureDay.length ;j++)
                 {
-
-
                     var dayTemp = (futureTemp[j] - 273.15) * 1.80 + 32;
                     dayTemp=Number.parseFloat(dayTemp).toFixed(1);
                     var futureForecast=futureDay[j].split("-").reverse().join("/");
                     $(".date-"+j).text(futureForecast); 
                     $(".temperature-"+j).text("Temp: "+dayTemp+" °F");
-                    $(".humidity-"+j).text("Humidity: "+futureHumid[j]+" %");
+                    $(".humidity-"+j).text("Humidity: "+futureHumid[j]+"%");
                     
                 }
     
@@ -79,8 +80,10 @@ $.ajax({
         
         
     });
+    localStorage.setItem("city",searchTerm);
     
 });
+
 //http://api.openweathermap.org/v3/uvi/{location}/{datetime}.json?appid={api_key}
 
 //[2020-05-05 00:00:00] forecastDay[0],forecastDay[1]1

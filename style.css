@@ -32,12 +32,41 @@
     width: 8rem;
     height: 10rem;
     margin-left: 20px;
-    background-color: #2196F3;
+    background-color: #3377FF;
 }
 .card-text
 {
     color: white;
     font-size: 8px;
-    font-weight:400;
+    font-weight:100;
+}
+.col
+{
+    font-weight :500;
+}
+.uvLow
+{
+background-color: green;
+color:white;
+}
+.uvModerate
+{
+background-color: yellow;
+color:white;
+}
+.uvHigh
+{
+    background-color: orange;
+    color:white;
+}
+.uvVeryHigh
+{
+    background-color: red;
+    color:white;
+}
+.uvExtreme
+{
+    background-color: violet;
+    color:white;
 }
 
