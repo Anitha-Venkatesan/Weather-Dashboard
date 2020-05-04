@@ -40,9 +40,12 @@ $.ajax({
   }).then(function(response) { 
         console.log(forecastURL);
         var futureDay=[];
+        var futureTemp=[];
+        var futureHumid=[];
         for(var i=0;i<response.list.length;i++)
         {
            var forecast=(response.list[i].dt_txt);
+           //console.log(forecast);
            var forecastDay=forecast.split(" ");
            if(forecastDay[1]=="00:00:00") 
            {
@@ -51,17 +54,25 @@ $.ajax({
                 //console.log(response.list[i]);
            
                 //console.log(response.list[i].main);
-                //console.log(response.list[i].main.temp);
-                 //console.log(response.list[i].main.humidity);
+                futureTemp.push(response.list[i].main.temp);
+                futureHumid.push(response.list[i].main.humidity);
+
+                
             }
                 //console.log(".day1-"+i);
         } 
+
         for(var j=0;j<futureDay.length ;j++)
                 {
+
+
+                    var dayTemp = (futureTemp[j] - 273.15) * 1.80 + 32;
+                    dayTemp=Number.parseFloat(dayTemp).toFixed(1);
                     var futureForecast=futureDay[j].split("-").reverse().join("/");
-                    $(".forecast-1-"+j).text(futureForecast);  
-                    //$(".temperature-1-"+j).text(response.list[i].main.temp);
-                    //$(".humidity-1-"+j).text(response.list[i].main.humidity);
+                    $(".date-"+j).text(futureForecast); 
+                    $(".temperature-"+j).text("Temp: "+dayTemp+" °F");
+                    $(".humidity-"+j).text("Humidity: "+futureHumid[j]+" %");
+                    
                 }
     
            

@@ -34,4 +34,10 @@
     margin-left: 20px;
     background-color: #2196F3;
 }
+.card-text
+{
+    color: white;
+    font-size: 8px;
+    font-weight:400;
+}
 
