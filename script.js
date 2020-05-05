@@ -4,11 +4,13 @@ $(document).ready(function() {
 
 
 $(".searchBtn").on("click",function(){
-searchTerm = $("#search-city").val();
+var searchTerm = $("#search-city").val();
 var apiKey= "89ac10db36e375ec24dd06e7440fc3a4";
  if(searchTerm !=="")
  {
  $(".list-group").append ($('<li class="list-group-item">' +searchTerm + '</li>'));
+ localStorage.setItem("city-"+searchTerm,searchTerm);
+ 
  }
  var queryURL ="https://api.openweathermap.org/data/2.5/weather?q="+searchTerm+"&appid="+apiKey;
  console.log(queryURL);
@@ -62,7 +64,7 @@ var apiKey= "89ac10db36e375ec24dd06e7440fc3a4";
         var iconUrl="https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png";
          $("#icon").attr("src",iconUrl).width(40).height(40);
          //iconImage=$("#icon").text(iconImage);
-        $(".name").prepend(response.name +" "+"("+todayDate+")");
+        $(".name").text(response.name +" "+"("+todayDate+")");
         $(".temperature").text("Temperature: "+temperature+ " °F");
         $(".humidity").text("Humidity: "+response.main.humidity+ " %");
         $(".wind").text("Wind Speed: "+response.wind.speed+ " MPH");      
@@ -95,7 +97,7 @@ $.ajax({
             var dayTemp = (futureTemp[j] - 273.15) * 1.80 + 32;
             dayTemp=Number.parseFloat(dayTemp).toFixed(1);
             var futureForecast=futureDay[j].split("-").reverse().join("/");
-        
+    
             var futureImage="https://openweathermap.org/img/wn/"+futureIcon[j]+"@2x.png";
             
             $(".date-"+j).text(futureForecast); 
@@ -104,7 +106,7 @@ $.ajax({
             $(".humidity-"+j).text("Humidity: "+futureHumid[j]+"%");
                     
          }
-         localStorage.setItem("city-"+searchTerm,searchTerm);
+       
         
  });
     
