@@ -15,7 +15,7 @@
 }
 .container span
 {
-    /*display: block;*/
+    display: block;
     display:table; 
     border:1px;
     font-weight:200;
