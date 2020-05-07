@@ -1,34 +1,45 @@
 $(document).ready(function () { 
-  var cityNameArr=[];
-  localStorage.getItem(cityNameArr);
-  $(".list-group-item").on("click", function () {
-    event.preventDefault;
-    cityNameArr.push(cityName);
-    for (var z = 0; z < cityNameArr.length; z++) {
-     $(this).attr('list-item' ,cityName);
-      alert("City name:"+cityNameArr[z]);
+  var cities =JSON.parse(localStorage.getItem("city")); //null
+  if (cities != null) {
+    cities.forEach(city => {
 
-    }
+      $(".list-group").append($('<li class = "list-group-item">' + city + '</li>')); 
+     
+      $(".list-group-item").attr('city' ,city);
+
+  
+      
+    });  
+  } else {
+    cities = [];
+  }
+
+
+  $(".list-group-item").on("click", function () {
+    
+
+     var city=$(this).attr('city');
+     console.log('Outside');
+    console.log(city);
     });
+ 
   $(".searchBtn").on("click", function () {
     var cityName = $("#search-city").val().trim();
     var apiKey = "89ac10db36e375ec24dd06e7440fc3a4";
-    localStorage.setItem("City-"+cityName, cityName);
-    $(".list-group").append($('<li class = "list-group-item">' + cityName + '</li>')); 
-      
-      
-      
-        
-    
-       
-       
-        console.log(cityNameArr);
-        //var schedule = $('#planner-' + btnValue).val();
-        //localStorage.setItem(currentDate.format('L') + "-" + btnValue, schedule);/
-    
-      
-      
 
+    if (cityName == "") {
+      return;
+    }
+    
+    $(".list-group").append($('<li class = "list-group-item">' + cityName + '</li>')); 
+    $(".list-group-item").attr('city' ,cityName);
+    $(".list-group-item").on("click", function () {
+      var city=$(this).attr('city');
+      console.log('Inside');
+      console.log(city);
+     });
+    cities.push(cityName); 
+    localStorage.setItem("city",JSON.stringify(cities));
   
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     console.log(queryURL);
