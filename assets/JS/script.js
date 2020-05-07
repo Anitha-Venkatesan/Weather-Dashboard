@@ -2,45 +2,32 @@ $(document).ready(function () {
   var cities =JSON.parse(localStorage.getItem("city")); //null
   if (cities != null) {
     cities.forEach(city => {
-
-      $(".list-group").append($('<li class = "list-group-item">' + city + '</li>')); 
-     
-      $(".list-group-item").attr('city' ,city);
-
-  
-      
+      $(".list-group").append($('<li class = "list-group-item">' + city + '</li>'));  
+      $(".list-group-item").attr('city' ,city); 
     });  
   } else {
     cities = [];
   }
-
-
   $(".list-group-item").on("click", function () {
-    
-
      var city=$(this).attr('city');
      console.log('Outside');
     console.log(city);
     });
- 
   $(".searchBtn").on("click", function () {
     var cityName = $("#search-city").val().trim();
     var apiKey = "89ac10db36e375ec24dd06e7440fc3a4";
-
     if (cityName == "") {
       return;
     }
-    
     $(".list-group").append($('<li class = "list-group-item">' + cityName + '</li>')); 
     $(".list-group-item").attr('city' ,cityName);
+    $(".list-group-item").attr('id',cityName);
     $(".list-group-item").on("click", function () {
       var city=$(this).attr('city');
-      console.log('Inside');
       console.log(city);
      });
     cities.push(cityName); 
     localStorage.setItem("city",JSON.stringify(cities));
-  
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     console.log(queryURL);
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + cityName;
