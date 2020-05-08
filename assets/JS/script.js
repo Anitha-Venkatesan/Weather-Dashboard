@@ -1,6 +1,7 @@
 var apiKey = "89ac10db36e375ec24dd06e7440fc3a4";
 
 $(document).ready(function () {
+  $("p").hide();
   var cities = JSON.parse(localStorage.getItem("city")); //null
 
   function getWeather(cityName) {
@@ -34,17 +35,17 @@ $(document).ready(function () {
       method: "GET"
     }).then(function (uvResponse) {
       var uvIndex = uvResponse.value;
-      $(".uv").removeClass("uvLow uvModerate uvHigh uvVeryHigh uvExtreme");
+      $(".badge").removeClass("uvLow uvModerate uvHigh uvVeryHigh uvExtreme");
       if (uvIndex < 3) {
-        $(".uv").text("UV Index: " + uvIndex).addClass('uvLow');
+        $(".badge").text(uvIndex).addClass('uvLow');
       } else if (uvResponse.value >= 3 && uvResponse.value < 6) {
-        $(".uv").text("UV Index: " + uvIndex).addClass('uvModerate');
+        $(".badge").text(uvIndex).addClass('uvModerate');
       } else if (uvResponse.value >= 6 && uvResponse.value < 8) {
-        $(".uv").text("UV Index: " + uvIndex).addClass('uvHigh');
+        $(".badge").text(uvIndex).addClass('uvHigh');
       } else if (uvResponse.value >= 8 && uvResponse.value < 11) {
-        $(".uv").text("UV Index: " + uvIndex).addClass('uvVeryHigh');
+        $(".badge").text(uvIndex).addClass('uvVeryHigh');
       } else if (uvResponse.value >= 11) {
-        $(".uv").text("UV Index: " + uvIndex).addClass('uvExtreme');
+       $(".badge").text(uvIndex).addClass('uvExtreme');
       }
     });
   }
