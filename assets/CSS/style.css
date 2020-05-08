@@ -19,10 +19,10 @@
 }
 .container span {
   
-    border:1px;
-    font-weight:200;
-    font-size:16px;
-   margin-top: 10px;
+    border: 1px;
+    font-weight: 200;
+    font-size: 16px;
+    margin-top: 10px;
 }
 .display{
    line-height:2;
@@ -34,14 +34,13 @@
 }
 
 .forecast {
-    margin-left: 20px;
+    margin-left: 25px;
     background-color: #3377FF;
 }
 .weather {
     width: 8rem;
     height: 10rem;
     font-size :10px;
-    font-weight: 500;
     line-height: 2;
     padding-left:10px;
 }

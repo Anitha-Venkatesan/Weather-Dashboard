@@ -1,9 +1,8 @@
 var apiKey = "89ac10db36e375ec24dd06e7440fc3a4";
 
 $(document).ready(function () {
-  $("p").hide();
+  $(".uv").hide();
   var cities = JSON.parse(localStorage.getItem("city")); //null
-
   function getWeather(cityName) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     $.ajax({
@@ -22,10 +21,12 @@ $(document).ready(function () {
       $(".temperature").text("Temperature: " + temperature + " °F");
       $(".humidity").text("Humidity: " + response.main.humidity + " %");
       $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
+      $(".uv").show();
       getUVIndex(response);
-    });
+    }).catch( function(response) {
+      alert( "$.get failed!" );
+     });
   }
-
   function getUVIndex(weatherResponse) {
     var latitude = weatherResponse.coord.lat;
     var longitude = weatherResponse.coord.lon;
@@ -47,9 +48,9 @@ $(document).ready(function () {
       } else if (uvResponse.value >= 11) {
        $(".badge").text(uvIndex).addClass('uvExtreme');
       }
+      $(".display-city").show();
     });
   }
-
   function getForecast(cityName) {
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + cityName;
     $.ajax({
@@ -82,7 +83,6 @@ $(document).ready(function () {
       }
     });
   }
-
   function createCityElement(cityName) {
     var cityListElement = $('<li class = "list-group-item">' + cityName + '</li>');
     cityListElement.attr('city', cityName);
@@ -93,25 +93,25 @@ $(document).ready(function () {
     });
     $(".list-group").append(cityListElement);
   }
-
   renderButtons();
   $(".searchBtn").on("click", function () {
     var cityName = $("#search-city").val().trim();
     if (cityName == "") {
       return;
     } 
+    
      var compareCity = cities.find(function(city){
       return city.toLowerCase() == cityName.toLowerCase();
     });
     if (!compareCity) {
       createCityElement(cityName); 
+      
       cities.push(cityName);  
       localStorage.setItem("city", JSON.stringify(cities));
     }
     getWeather(cityName);
     getForecast(cityName);   
   });
-
   function renderButtons() {
     if (cities != null) {
       cities.forEach((city, index) => {
