@@ -98,15 +98,17 @@ $(document).ready(function () {
     var cityName = $("#search-city").val().trim();
     if (cityName == "") {
       return;
+    } 
+     var compareCity = cities.find(function(city){
+      return city.toLowerCase() == cityName.toLowerCase();
+    });
+    if (!compareCity) {
+      createCityElement(cityName); 
+      cities.push(cityName);  
+      localStorage.setItem("city", JSON.stringify(cities));
     }
-    if(cities.indexof(cityName == -1))
-    {
-    createCityElement(cityName);
-    cities.push(cityName);
-    localStorage.setItem("city", JSON.stringify(cities));
     getWeather(cityName);
-    getForecast(cityName);
-    }
+    getForecast(cityName);   
   });
 
   function renderButtons() {
