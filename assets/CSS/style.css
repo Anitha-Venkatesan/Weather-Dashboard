@@ -1,78 +1,74 @@
-.heading
-{
-    text-align:right;
+.heading {
+        float: left;
+        text-align: center;
+        width: 100%;  
+        font-size: 40px;
 }
-.card 
-{
+.inputValue{
+    font-size: 18px;
+    font-weight:500;
+}
+.card {
     float: left;
 }
-.container
-{
+.container {
     width: 800px;
     height: 200px;
     float: center;
     
 }
-.container span
-{
-    display: block;
-    display:table; 
+.container span {
+  
     border:1px;
     font-weight:200;
     font-size:16px;
    margin-top: 10px;
 }
-#name-city
-{
-   font-size: larger; 
-   font-weight: 400;
+.display{
+   line-height:2;
+
 }
-.forecast
-{
-    width: 8rem;
-    height: 10rem;
+#name-city {
+   font-weight: 500;
+   font-size: 20px; 
+}
+
+.forecast {
     margin-left: 20px;
-    padding-left:10px;
     background-color: #3377FF;
 }
-.card-text
-{
-    color: white;
-    font-size: 8px;
-    font-weight:100;
+.weather {
+    width: 8rem;
+    height: 10rem;
+    font-size :10px;
+    font-weight: 500;
+    line-height: 2;
+    padding-left:10px;
 }
-.col
-{
+
+.col {
     font-weight :500;
+    font-size: 20px;
 }
-.uvLow
-{
+.uvLow {
 background-color: green;
-color:white;
+color:black;
 }
-.uvModerate
-{
+.uvModerate {
 background-color: yellow;
-color:white;
+color:black;
 }
-.uvHigh
-{
+.uvHigh {
     background-color: orange;
-    color:white;
+    color:black;
 }
-.uvVeryHigh
-{
+.uvVeryHigh {
     background-color: red;
-    color:white;
+    color:black;
 }
-.uvExtreme
-{
+.uvExtreme {
     background-color: violet;
-    color:white;
+    color:black;
 }
-/*#icon
-{
-    height:30px;
-    width: 30px;
-}*/
+
 
