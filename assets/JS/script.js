@@ -99,11 +99,14 @@ $(document).ready(function () {
     if (cityName == "") {
       return;
     }
+    if(cities.indexof(cityName == -1))
+    {
     createCityElement(cityName);
     cities.push(cityName);
     localStorage.setItem("city", JSON.stringify(cities));
     getWeather(cityName);
     getForecast(cityName);
+    }
   });
 
   function renderButtons() {
