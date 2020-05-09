@@ -69,5 +69,8 @@ color:black;
     background-color: violet;
     color:black;
 }
+.list-group-item {
+    cursor: pointer;
+}
 
 

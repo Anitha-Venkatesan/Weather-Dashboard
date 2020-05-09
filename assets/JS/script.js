@@ -2,13 +2,25 @@ var apiKey = "89ac10db36e375ec24dd06e7440fc3a4";
 
 $(document).ready(function () {
   $(".uv").hide();
+  $(".alert").hide();
+  $(".main").hide();
   var cities = JSON.parse(localStorage.getItem("city")); //null
+
   function getWeather(cityName) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
+      var isCityPresent = cities.find(function(city){
+        return city.toLowerCase() == cityName.toLowerCase();
+      });
+      if (!isCityPresent) {
+        createCityElement(cityName); 
+        cities.push(cityName);  
+        localStorage.setItem("city", JSON.stringify(cities));
+      }
+
       var todayDate = moment().format('l');
       var temperature = response.main.temp;
       temperature = (temperature - 273.15) * 1.80 + 32;
@@ -22,9 +34,11 @@ $(document).ready(function () {
       $(".humidity").text("Humidity: " + response.main.humidity + " %");
       $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
       $(".uv").show();
+      $(".main").show();
       getUVIndex(response);
-    }).catch( function(response) {
-      alert( "$.get failed!" );
+      getForecast(cityName);
+    }).catch( function() {
+      $(".alert").show();   
      });
   }
   function getUVIndex(weatherResponse) {
@@ -48,7 +62,7 @@ $(document).ready(function () {
       } else if (uvResponse.value >= 11) {
        $(".badge").text(uvIndex).addClass('uvExtreme');
       }
-      $(".display-city").show();
+     
     });
   }
   function getForecast(cityName) {
@@ -95,30 +109,23 @@ $(document).ready(function () {
   }
   renderButtons();
   $(".searchBtn").on("click", function () {
-    var cityName = $("#search-city").val().trim();
+    $(".alert").hide();
+
+    var cityName = $("#search-city").val().trim(); 
     if (cityName == "") {
       return;
     } 
-    
-     var compareCity = cities.find(function(city){
-      return city.toLowerCase() == cityName.toLowerCase();
-    });
-    if (!compareCity) {
-      createCityElement(cityName); 
-      
-      cities.push(cityName);  
-      localStorage.setItem("city", JSON.stringify(cities));
-    }
-    getWeather(cityName);
-    getForecast(cityName);   
+
+    $("#search-city").val("");
+    getWeather(cityName);   
   });
+
   function renderButtons() {
     if (cities != null) {
       cities.forEach((city, index) => {
         createCityElement(city);
         if (index == cities.length - 1) {
           getWeather(city);
-          getForecast(city);
         }
       });
     } else {
