@@ -10,13 +10,11 @@ Creating an weather application for a traveler,to see the weather outlook for mu
 * Javascript
 * Ajax 
 ### Installation
-*  
+* 'git clone git@github.com:Anitha-Venkatesan/Weather-Dashboard.git`
 * `cd Weather-Dashboard`
 * Open index.html in browser
 ### URL
-[Demo URL][https://anitha-venkatesan.github.io/Weather-Dashboard/]
-
-
+[Demo URL](https://anitha-venkatesan.github.io/Weather-Dashboard/)
 
 ### References
 * https://www.w3schools.com/jquery/event_click.asp
