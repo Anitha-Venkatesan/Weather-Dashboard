@@ -3,17 +3,19 @@ $(document).ready(function () {
   $(".uv").hide();
   $(".alert").hide();
   $(".main").hide();
-  var cities = JSON.parse(localStorage.getItem("city")); //null
-  //Generating an weather ajax API calls to jquery
+  var cities = JSON.parse(localStorage.getItem("city"));
+  //Getting weather info using ajax API call
   function getWeather(cityName) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function (response) {
+      // Check if city is already added 
       var isCityPresent = cities.find(function(city){
         return city.toLowerCase() == cityName.toLowerCase();
       });
+      // Add city to local store only if it is not already added
       if (!isCityPresent) {
         createCityElement(cityName); 
         cities.push(cityName);  
@@ -35,11 +37,11 @@ $(document).ready(function () {
       $(".main").show();
       getUVIndex(response);
       getForecast(cityName);
-    }).catch( function() { //
+    }).catch( function() { // If the request fails then display error message
       $(".alert").show();   
      });
   }
-  //Generating an UV Index ajax API calls to jquery
+  //Getting uv index info using ajax API call
   function getUVIndex(weatherResponse) {
     var latitude = weatherResponse.coord.lat;
     var longitude = weatherResponse.coord.lon;
@@ -50,7 +52,8 @@ $(document).ready(function () {
     }).then(function (uvResponse) {
       var uvIndex = uvResponse.value;
       $(".badge").removeClass("uvLow uvModerate uvHigh uvVeryHigh uvExtreme");
-      if (uvIndex < 3) {//Added colors for uvIndex using badge class
+      // Color coding based on uv index
+      if (uvIndex < 3) {
         $(".badge").text(uvIndex).addClass('uvLow');
       } else if (uvResponse.value >= 3 && uvResponse.value < 6) {
         $(".badge").text(uvIndex).addClass('uvModerate');
@@ -64,7 +67,7 @@ $(document).ready(function () {
      
     });
   }
-  //Generating an future Forecast ajax API calls to jquery
+  //Getting forecast for future 5 days using ajax api request
   function getForecast(cityName) {
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + cityName;
     $.ajax({
@@ -87,7 +90,7 @@ $(document).ready(function () {
       }
       for (var j = 0; j < futureDay.length; j++) {
         var dayTemp = (futureTemp[j] - 273.15) * 1.80 + 32;
-        dayTemp = Number.parseFloat(dayTemp).toFixed(1);//Returns a floating point number 
+        dayTemp = Number.parseFloat(dayTemp).toFixed(1);
         var futureForecast = futureDay[j].split("-").reverse().join("/");
         var futureImage = "https://openweathermap.org/img/wn/" + futureIcon[j] + "@2x.png";
         $(".date-" + j).text(futureForecast);
@@ -124,6 +127,7 @@ $(document).ready(function () {
     if (cities != null) {
       cities.forEach((city, index) => {
         createCityElement(city);
+        // Get weather info for the last added city
         if (index == cities.length - 1) {
           getWeather(city);
         }
