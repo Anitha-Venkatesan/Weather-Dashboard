@@ -14,7 +14,7 @@ Creating an weather application for a traveler,to see the weather outlook for mu
 * `cd Weather-Dashboard`
 * Open index.html in browser
 ### URL
-[Demo URL][]
+[Demo URL][https://anitha-venkatesan.github.io/Weather-Dashboard/]
 
 
 
