@@ -10,7 +10,7 @@ Creating an weather application for a traveler,to see the weather outlook for mu
 * Javascript
 * Ajax 
 ### Installation
-* 'git clone git@github.com:Anitha-Venkatesan/Weather-Dashboard.git`
+* `git clone git@github.com:Anitha-Venkatesan/Weather-Dashboard.git`
 * `cd Weather-Dashboard`
 * Open index.html in browser
 ### URL
