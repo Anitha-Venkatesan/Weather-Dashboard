@@ -14,71 +14,86 @@
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-5">
     <h1 class="heading navbar-brand mb-0">Weather Dashboard</h1>
   </nav>
-  <div class="card" style="width: 18rem;">
-    <div class="card-header ">
-      <label class="inputValue" type="text">Search for a city:</label>
-      <input type="text" id="search-city" name="searchCity" />
-      <button class="searchBtn" style="background-color: #3377FF;"><i class="fa fa-search"></i></button>
-      <div class="alert alert-danger mt-2" role="alert">
-        Please enter valid city
+  <div class="container mw-100">
+    <div class ="row">
+      <div class ="col-xs-12 col-sm-12 col-md-3 mw-100">
+        <div class="card w-100">
+          <div class="card-header ">
+            <div>
+              <label class="inputValue" type="text">Search for a city:</label>
+            </div>
+            
+            <input type="text" id="search-city" name="searchCity" />
+            <button class="searchBtn" style="background-color: #3377FF;"><i class="fa fa-search"></i></button>
+            <div class="alert alert-danger mt-2" role="alert">
+              Please enter valid city
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+      <div class ="col-xs-12 col-sm-12 col-md-9">
+        <div class="container border main">
+          <span class="display name" id="name-city"></span><img class="icon" id="icon" /><br>
+          <span class="display temperature"></span><br>
+          <span class="display humidity"></span><br>
+          <span class="display wind"></span><br>
+          <span class="display uv">UV Index :<span class="badge"></span></span>
+        </div><br><br>
+        <div class="container main w-100">
+          <div class="row">
+            <div class="col">5-Day Forecast:</div>
+          </div>
+          <div class="row">
+            <div class="card forecast">
+              <div class="weather">
+                <span class="card-text date-0"></span><br>
+                <img class="card-text icon " id="icon-0" /><br>
+                <span class="card-text temperature-0"></span><br>
+                <span class="card-text humidity-0"></span>
+              </div>
+            </div>
+            <div class="card forecast">
+              <div class="weather">
+                <span class="card-text date-1"></span><br>
+                <img class="card-text icon " id="icon-1" /><br>
+                <span class="card-text temperature-1"></span><br>
+                <span class="card-text humidity-1"></span>
+              </div>
+            </div>
+            <div class="card forecast">
+              <div class="weather">
+                <span class="card-text date-2"></span><br>
+                <img class="card-text icon " id="icon-2" /><br>
+                <span class="card-text temperature-2"></span><br>
+                <span class="card-text humidity-2"></span>
+              </div>
+            </div>
+            <div class="card forecast">
+              <div class="weather">
+                <span class="card-text date-3"></span><br>
+                <img class="card-text icon " id="icon-3" /><br>
+                <span class="card-text temperature-3"></span><br>
+                <span class="card-text humidity-3"></span>
+              </div>
+            </div>
+            <div class="card forecast">
+              <div class="weather">
+                <span class="card-text date-4"></span><br>
+                <img class="card-text icon" id="icon-4" /><br>
+                <span class="card-text temperature-4"></span><br>
+                <span class="card-text humidity-4"></span>
+              </div>
+            </div>
+          </div>
+
       </div>
     </div>
-    <ul class="list-group list-group-flush">
-    </ul>
+
   </div>
-  <div class="container border main">
-    <span class=" display name" id="name-city"></span><img class="icon" id="icon" /><br>
-    <span class="display temperature"></span><br>
-    <span class="display humidity"></span><br>
-    <span class="display wind"></span><br>
-    <span class="display uv">UV Index :<span class="badge"></span></span>
-  </div><br><br>
-  <div class="container main">
-    <div class="row">
-      <div class="col">5-Day Forecast:</div>
-    </div>
-    <div class="row">
-      <div class="card forecast">
-        <div class="weather">
-          <span class="card-text date-0"></span><br>
-          <img class="card-text icon " id="icon-0" /><br>
-          <span class="card-text temperature-0"></span><br>
-          <span class="card-text humidity-0"></span>
-        </div>
-      </div>
-      <div class="card forecast">
-        <div class="weather">
-          <span class="card-text date-1"></span><br>
-          <img class="card-text icon " id="icon-1" /><br>
-          <span class="card-text temperature-1"></span><br>
-          <span class="card-text humidity-1"></span>
-        </div>
-      </div>
-      <div class="card forecast">
-        <div class="weather">
-          <span class="card-text date-2"></span><br>
-          <img class="card-text icon " id="icon-2" /><br>
-          <span class="card-text temperature-2"></span><br>
-          <span class="card-text humidity-2"></span>
-        </div>
-      </div>
-      <div class="card forecast">
-        <div class="weather">
-          <span class="card-text date-3"></span><br>
-          <img class="card-text icon " id="icon-3" /><br>
-          <span class="card-text temperature-3"></span><br>
-          <span class="card-text humidity-3"></span>
-        </div>
-      </div>
-      <div class="card forecast">
-        <div class="weather">
-          <span class="card-text date-4"></span><br>
-          <img class="card-text icon" id="icon-4" /><br>
-          <span class="card-text temperature-4"></span><br>
-          <span class="card-text humidity-4"></span>
-        </div>
-      </div>
-    </div>
+  
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="assets/JS/script.js"></script>

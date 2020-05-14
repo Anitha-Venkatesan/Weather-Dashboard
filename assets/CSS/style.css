@@ -10,15 +10,12 @@
 }
 .card {
     float: left;
-}
-.container {
-    width: 800px;
-    height: 200px;
-    float: center;  
-     
+    
+    
 }
 .main {
     border-width:3px;
+    margin-top: 10px;
 }
 .container span {  
     border: 1px;
@@ -36,6 +33,7 @@
 .forecast {
     margin-left: 25px;
     background-color: #3377FF;
+    margin-bottom: 10px;
 }
 .weather {
     width: 8rem;
@@ -70,6 +68,7 @@
 }
 .list-group-item {
     cursor: pointer;
+   
 }
 
 
